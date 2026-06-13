@@ -1,0 +1,75 @@
+#udemy-tr-dub-overlay {
+  position: fixed;
+  left: 50%;
+  bottom: 28px;
+  transform: translateX(-50%);
+  width: min(760px, calc(100vw - 32px));
+  z-index: 2147483647;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.18s ease;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#udemy-tr-dub-overlay.visible {
+  opacity: 1;
+}
+
+#udemy-tr-dub-overlay .utr-card {
+  background: rgba(17, 17, 17, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.38);
+  color: #fff;
+  padding: 12px 14px;
+  backdrop-filter: blur(10px);
+}
+
+#udemy-tr-dub-overlay.compact .utr-card {
+  padding: 9px 11px;
+}
+
+#udemy-tr-dub-overlay .utr-status {
+  font-size: 12px;
+  line-height: 1.25;
+  opacity: 0.82;
+  margin-bottom: 8px;
+}
+
+#udemy-tr-dub-overlay.compact .utr-status {
+  margin-bottom: 6px;
+}
+
+#udemy-tr-dub-overlay .utr-target {
+  font-size: 24px;
+  line-height: 1.32;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+#udemy-tr-dub-overlay.compact .utr-target {
+  font-size: 20px;
+  margin-bottom: 4px;
+}
+
+#udemy-tr-dub-overlay .utr-source {
+  font-size: 15px;
+  line-height: 1.35;
+  opacity: 0.78;
+}
+
+#udemy-tr-dub-overlay.compact .utr-source {
+  font-size: 13px;
+}
+
+#udemy-tr-dub-overlay .utr-note {
+  margin-top: 8px;
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  opacity: 0.72;
+}
+
+#udemy-tr-dub-overlay .utr-hidden {
+  display: none;
+}

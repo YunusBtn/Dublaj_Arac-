@@ -1,0 +1,48 @@
+{
+  "manifest_version": 3,
+  "name": "Udemy TR Dub",
+  "version": "0.1.5",
+  "description": "Udemy videolari icin canli Turkce ceviri, teknik terim koruma, AI dublaj, ses secimi, telaffuz sozlugu ve daha guvenli caption algilama.",
+  "minimum_chrome_version": "116",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "tabs",
+    "scripting",
+    "offscreen",
+    "tabCapture"
+  ],
+  "host_permissions": [
+    "https://www.udemy.com/*",
+    "https://*.udemy.com/*",
+    "https://api.openai.com/*",
+    "https://api.deepl.com/*",
+    "https://api-free.deepl.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Udemy TR Dub",
+    "default_popup": "popup.html"
+  },
+  "options_page": "options.html",
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.udemy.com/*",
+        "https://*.udemy.com/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "css": [
+        "content.css"
+      ],
+      "all_frames": true,
+      "match_origin_as_fallback": true,
+      "match_about_blank": true,
+      "run_at": "document_idle"
+    }
+  ]
+}

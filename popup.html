@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Udemy TR Dub</title>
+    <style>
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        margin: 0;
+        padding: 14px;
+        width: 320px;
+        color: #121212;
+      }
+      h1 {
+        font-size: 18px;
+        margin: 0 0 10px;
+      }
+      .card {
+        border: 1px solid #dedede;
+        border-radius: 12px;
+        padding: 10px 12px;
+        margin-bottom: 10px;
+        background: #fff;
+      }
+      .row {
+        display: flex;
+        gap: 8px;
+        margin-top: 10px;
+      }
+      button {
+        flex: 1;
+        border: 0;
+        border-radius: 10px;
+        padding: 10px 12px;
+        cursor: pointer;
+        font-weight: 700;
+      }
+      #startBtn { background: #111; color: #fff; }
+      #stopBtn { background: #f2f2f2; }
+      #optionsBtn {
+        width: 100%;
+        background: #6d28d9;
+        color: #fff;
+        margin-top: 6px;
+      }
+      .muted { color: #666; font-size: 12px; }
+      .status { font-weight: 700; margin-bottom: 6px; }
+      ul {
+        padding-left: 18px;
+        margin: 8px 0 0;
+      }
+      li { margin-bottom: 4px; }
+    </style>
+  </head>
+  <body>
+    <h1>Udemy TR Dub</h1>
+    <div class="card">
+      <div id="statusLine" class="status">Sayfa kontrol ediliyor...</div>
+      <div id="details" class="muted"></div>
+      <ul id="issues"></ul>
+    </div>
+
+    <div class="row">
+      <button id="startBtn">Baslat</button>
+      <button id="stopBtn">Durdur</button>
+    </div>
+    <button id="optionsBtn">Ayarlar</button>
+
+    <script src="popup.js"></script>
+  </body>
+</html>

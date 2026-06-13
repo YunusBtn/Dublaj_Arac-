@@ -1,0 +1,285 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Udemy TR Dub Options</title>
+    <style>
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        margin: 0;
+        background: #f7f7fb;
+        color: #18181b;
+      }
+      .wrap {
+        max-width: 940px;
+        margin: 0 auto;
+        padding: 24px;
+      }
+      h1 {
+        margin: 0 0 12px;
+      }
+      .hint {
+        color: #555;
+        margin-bottom: 18px;
+      }
+      .card {
+        background: #fff;
+        border: 1px solid #e7e7ef;
+        border-radius: 16px;
+        padding: 18px;
+        margin-bottom: 14px;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+      label {
+        display: block;
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+      input[type="text"],
+      input[type="password"],
+      select,
+      textarea {
+        width: 100%;
+        box-sizing: border-box;
+        border: 1px solid #d0d0dd;
+        border-radius: 10px;
+        padding: 10px 12px;
+        background: #fff;
+        font: inherit;
+      }
+      textarea {
+        resize: vertical;
+        min-height: 110px;
+      }
+      .checkbox {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 8px;
+      }
+      .checkbox label {
+        margin: 0;
+        font-weight: 600;
+      }
+      .range-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .muted {
+        color: #666;
+        font-size: 13px;
+        margin-top: 6px;
+        line-height: 1.45;
+      }
+      .full {
+        grid-column: 1 / -1;
+      }
+      button {
+        border: 0;
+        border-radius: 12px;
+        background: #111;
+        color: #fff;
+        padding: 12px 16px;
+        font-weight: 700;
+        cursor: pointer;
+      }
+      #saveStatus {
+        margin-left: 10px;
+        color: #555;
+        font-weight: 700;
+      }
+      code {
+        background: #f2f2f7;
+        padding: 2px 6px;
+        border-radius: 6px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>Udemy TR Dub - Ayarlar</h1>
+      <div class="hint">
+        DeepL ceviri icin gerekli. Dublajda iki ayri yol var: <b>Browser TTS</b> yerel sistem seslerini kullanir; <b>OpenAI TTS</b> ise secili OpenAI sesini kullanir.
+      </div>
+
+      <div class="card">
+        <h2>Ceviri</h2>
+        <div class="grid">
+          <div>
+            <label for="deeplApiKey">DeepL API Key</label>
+            <input id="deeplApiKey" type="password" placeholder="DeepL-Auth-Key kullanacak anahtar" />
+          </div>
+          <div>
+            <label for="sourceLangHint">Kaynak dil ipucu</label>
+            <select id="sourceLangHint">
+              <option value="EN">English</option>
+              <option value="">Auto</option>
+            </select>
+          </div>
+        </div>
+        <div class="checkbox">
+          <input id="deeplUsePro" type="checkbox" />
+          <label for="deeplUsePro">DeepL Pro endpoint kullan</label>
+        </div>
+        <div class="checkbox">
+          <input id="preferExistingSubtitles" type="checkbox" />
+          <label for="preferExistingSubtitles">Var olan text track / subtitle once kullan</label>
+        </div>
+        <div class="checkbox">
+          <input id="showSourceText" type="checkbox" />
+          <label for="showSourceText">Overlay icinde orijinal metni de goster</label>
+        </div>
+        <div class="checkbox">
+          <input id="strictCaptionMode" type="checkbox" />
+          <label for="strictCaptionMode">Altyazi gorunmuyorsa sayfadaki diger metinleri caption sanma</label>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Dublaj ve STT fallback</h2>
+        <div class="grid">
+          <div>
+            <label for="openaiApiKey">OpenAI API Key</label>
+            <input id="openaiApiKey" type="password" placeholder="sk-..." />
+            <div class="muted">Bu alan OpenAI STT ve OpenAI TTS icin kullanilir.</div>
+          </div>
+          <div>
+            <label for="sttProvider">No-subtitle fallback</label>
+            <select id="sttProvider">
+              <option value="openai">OpenAI STT</option>
+              <option value="off">Kapali</option>
+            </select>
+          </div>
+          <div>
+            <label for="openaiSttModel">STT modeli</label>
+            <select id="openaiSttModel">
+              <option value="gpt-4o-mini-transcribe">gpt-4o-mini-transcribe</option>
+              <option value="gpt-4o-transcribe">gpt-4o-transcribe</option>
+              <option value="whisper-1">whisper-1</option>
+            </select>
+          </div>
+          <div>
+            <label for="ttsProvider">Dublaj motoru</label>
+            <select id="ttsProvider">
+              <option value="browser">Browser TTS</option>
+              <option value="openai">OpenAI TTS</option>
+              <option value="off">Kapali</option>
+            </select>
+            <div class="muted">OpenAI sesi secimi sadece <code>OpenAI TTS</code> seciliyken etkilidir.</div>
+          </div>
+          <div>
+            <label for="browserVoiceURI">Browser sesi</label>
+            <select id="browserVoiceURI"></select>
+            <div class="muted">Bu liste bilgisayarindaki mevcut sistem seslerinden doldurulur.</div>
+          </div>
+          <div>
+            <label for="openaiTtsModel">OpenAI TTS modeli</label>
+            <select id="openaiTtsModel">
+              <option value="gpt-4o-mini-tts">gpt-4o-mini-tts</option>
+              <option value="tts-1">tts-1</option>
+              <option value="tts-1-hd">tts-1-hd</option>
+            </select>
+          </div>
+          <div>
+            <label for="openaiVoice">OpenAI sesi</label>
+            <select id="openaiVoice">
+              <option value="coral">coral</option>
+              <option value="alloy">alloy</option>
+              <option value="ash">ash</option>
+              <option value="ballad">ballad</option>
+              <option value="echo">echo</option>
+              <option value="fable">fable</option>
+              <option value="nova">nova</option>
+              <option value="onyx">onyx</option>
+              <option value="sage">sage</option>
+              <option value="shimmer">shimmer</option>
+              <option value="verse">verse</option>
+            </select>
+          </div>
+          <div class="full">
+            <label for="openaiTtsInstructions">OpenAI TTS talimati</label>
+            <textarea id="openaiTtsInstructions" rows="4" placeholder="Ornek: Turkceyi akici oku; teknik Ingilizce terimleri Turk gelistirici agziyla soyle."></textarea>
+            <div class="muted">Yalnizca <code>gpt-4o-mini-tts</code> icin etkili olacak sekilde gonderilir.</div>
+          </div>
+        </div>
+        <div class="checkbox">
+          <input id="enableDubbing" type="checkbox" />
+          <label for="enableDubbing">Dublaji aktif et</label>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Telaffuz sozlugu</h2>
+        <label for="pronunciationGlossary">Sadece seslendirme icin metin donusumu</label>
+        <textarea id="pronunciationGlossary" rows="8" placeholder="backend=bekent&#10;Spring Boot=spring but"></textarea>
+        <div class="muted">
+          Sol taraf overlay metninde kalir; sag taraf sadece dublaj sesinde kullanilir. Ornek: <code>backend=bekent</code>, <code>REST API=rest ey pi ay</code>.
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Teknik terim koruma</h2>
+        <label for="technicalGlossary">Ceviride Ingilizce kalmasini istedigin teknik terimler</label>
+        <textarea id="technicalGlossary" rows="8" placeholder="Spring Boot=Spring Boot&#10;REST API=REST API&#10;backend=backend"></textarea>
+        <div class="muted">
+          Sol taraf kaynak metinde aranan ifade, sag taraf overlayde korunacak gosterimdir. Boylece ceviri motoru teknik terimleri Turkcelestirmez.
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Overlay ve ses</h2>
+        <div class="checkbox">
+          <input id="overlayCompact" type="checkbox" />
+          <label for="overlayCompact">Kompakt overlay</label>
+        </div>
+        <div class="checkbox">
+          <input id="syncDubbing" type="checkbox" />
+          <label for="syncDubbing">Altyazi akisini yakalamak icin gec kalan dublaji kes / atla</label>
+        </div>
+        <div class="checkbox">
+          <input id="preferSentenceCompletion" type="checkbox" />
+          <label for="preferSentenceCompletion">Hizli oynatimda cumleyi yarim kesme; bitirip en guncel altyaziya atla</label>
+        </div>
+        <div style="margin-top: 12px;">
+          <label for="interruptToleranceMs">Yeni altyazi gelince mevcut cumleye taninan ek sure</label>
+          <div class="range-row">
+            <input id="interruptToleranceMs" type="range" min="300" max="2200" step="50" />
+            <span id="interruptToleranceMsValue"></span>
+          </div>
+          <div class="muted">2x gibi hizlarda 1100 - 1600 ms genelde daha iyi sonuc verir. Deger buyudukce cumle daha az bolunur ama dublaj biraz geriden gelebilir.</div>
+        </div>
+        <div style="margin-top: 12px;">
+          <label for="ttsMaxRate">Maksimum dublaj hiz katsayisi</label>
+          <div class="range-row">
+            <input id="ttsMaxRate" type="range" min="1" max="3" step="0.05" />
+            <span id="ttsMaxRateValue"></span>
+          </div>
+          <div class="muted">1.25x ve 1.5x video hizlarinda genelde 2.2 - 2.6 araligi daha iyi senkron verir.</div>
+        </div>
+        <div style="margin-top: 12px;">
+          <label for="duckingVolume">Orijinal video sesi seviyesi (dublaj sirasinda)</label>
+          <div class="range-row">
+            <input id="duckingVolume" type="range" min="0" max="1" step="0.02" />
+            <span id="duckingValue"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div>
+          Guvenlik notu: Bu prototip API keyleri uzanti storage icinde tutar. Kisisel kullanim icin pratiktir; yayinlanacak urunde bunlari dogrudan client-side dagitmamak gerekir.
+        </div>
+      </div>
+
+      <button id="saveBtn">Kaydet</button>
+      <span id="saveStatus"></span>
+    </div>
+
+    <script src="options.js"></script>
+  </body>
+</html>
